@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'a-fallback-secret-key-for-development
 DEBUG = os.environ.get('DEBUG') == 'True'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['backend-medicheck.onrender.com']
 
 # Add local development hosts if DEBUG is True
 if DEBUG:
