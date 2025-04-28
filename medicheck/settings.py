@@ -14,6 +14,15 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# settings.py
+
+import os
+
 # ... other settings ...
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -27,7 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'a-fallback-secret-key-for-development
 DEBUG = os.environ.get('DEBUG') == 'True'
 
 
-ALLOWED_HOSTS = ['backend-medicheck.onrender.com']
+ALLOWED_HOSTS = []
 
 # Add local development hosts if DEBUG is True
 if DEBUG:
@@ -51,18 +60,6 @@ if CUSTOM_DOMAINS_STR:
 
 
 # ... rest of your settings ...
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fj11uc8$d546zp(omj_9q#0jxxsta)b7voag25rw-%px+@n(qq'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
