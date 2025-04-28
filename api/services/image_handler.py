@@ -1,11 +1,15 @@
 from google.genai import types
 from google import genai
-
+import os
+from pathlib import Path
 
 class PossibleDisease:
+    current_dir = Path(__file__).resolve()
+    parent_dir = current_dir.parents[2]
+
     client = genai.Client(api_key="AIzaSyAALehML5GdQAU6ed-ADJ82qOGBidt1wT4")
     def getDisease(self, imgName):
-        with open(f'/home/linuxer77/Programs/Hackathon-Project/Disease-bullshit/media/uploads/{imgName}', 'rb') as f:
+        with open(f'{self.parent_dir}/media/uploads/{imgName}', 'rb') as f:
             self.img_bytes = f.read()
 
         response = self.client.models.generate_content(

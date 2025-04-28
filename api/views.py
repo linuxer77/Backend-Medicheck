@@ -2,8 +2,8 @@ from rest_framework.response import Response
 from rest_framework import parsers
 from rest_framework.decorators import api_view, parser_classes
 from base.models import Img
-from .serializers import ImgSerializer, AudioSerializer, VideoSerializer, PdfSerializer
-from .services import llm_handler, image_handler, audio_handler, video_handler
+from .serializers import ImgSerializer, VideoSerializer, PdfSerializer
+from .services import llm_handler, image_handler, video_handler
 from django.http import JsonResponse, HttpResponse
 import json
 from .prettify import prettify
@@ -48,17 +48,17 @@ def ImgViewSet(request):
     else:
         return Response(serializer.errors, status=400)
 
-@api_view(['POST'])
-def AudioViewSet(request):
-    audio_loc = request.data['audio']
-    serializer = AudioSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        res = audio_handler.AudioHandler()
-        possibleDisease = res.llmResponse(audio_loc)
-        return Response(possibleDisease, status=201)
-    else:
-        return Response(serializer.errors, status=400)
+# @api_view(['POST'])
+# def AudioViewSet(request):
+#     audio_loc = request.data['audio']
+#     serializer = AudioSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         res = audio_handler.AudioHandler()
+#         possibleDisease = res.llmResponse(audio_loc)
+#         return Response(possibleDisease, status=201)
+#     else:
+#         return Response(serializer.errors, status=400)
 
 @api_view(['POST'])
 def VideoViewSet(request):

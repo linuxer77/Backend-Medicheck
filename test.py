@@ -1,11 +1,9 @@
-from google import genai
+import os
 
-client = genai.Client(api_key="AIzaSyAALehML5GdQAU6ed-ADJ82qOGBidt1wT4")
-
-myfile = client.files.upload(file="/home/linuxer77/Downloads/vid.mp4")
-
-response = client.models.generate_content(
-    model="gemini-2.0-flash", contents=[myfile, "Summarize this video. Then create a quiz with an answer key based on the information in this video."]
-)
-
-print(response.text)
+# Get the absolute path of the current script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+print(current_dir)
+# Now, you can build the path to 'main.py' relative to the current directory
+file_path = os.path.join(current_dir, 'test.py')
+print(file_path)
+print(file_path)

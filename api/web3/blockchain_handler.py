@@ -4,12 +4,15 @@ import hashlib
 from web3 import Web3
 from eth_account import Account
 from web3.exceptions import TransactionNotFound, ContractLogicError
+from pathlib import Path
+
+current_dir = Path(__file__).resolve()
+parent_dir = current_dir.parents[0]
 
 HOLESKY_RPC_URL = 'https://rpc.ankr.com/eth_holesky'
 CONTRACT_ADDRESS = '0x17057062D187E7D9cA40801abc9487cf4fd29617'
 BACKEND_PRIVATE_KEY = 'c357f55cb4aff67aec356d81e4e2d895ce2ad7764c740d387ecf4b276cd55fa7'
-ABI_FILE_PATH = '/home/linuxer77/Programs/Hackathon-Project/Disease-bullshit/api/web3/SimpleBackendRegistry.abi'
-print(ABI_FILE_PATH)
+ABI_FILE_PATH = f'{parent_dir}/SimpleBackendRegistry.abi'
 CONTRACT_ABI = None
 
 try:
