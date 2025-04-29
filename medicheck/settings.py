@@ -19,47 +19,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# settings.py
-
-import os
-
-# ... other settings ...
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# It's HIGHLY recommended to get this from environment variables on Render.
-# Example:
-SECRET_KEY = os.environ.get('SECRET_KEY', 'a-fallback-secret-key-for-development-ONLY') # ***CHANGE THIS! Use a strong default for dev, but set in Render env vars.***
-
+SECRET_KEY = 'django-insecure-fj11uc8$d546zp(omj_9q#0jxxsta)b7voag25rw-%px+@n(qq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Control DEBUG via an environment variable
-DEBUG = os.environ.get('DEBUG') == 'True'
-
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Add local development hosts if DEBUG is True
-if DEBUG:
-    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', '0.0.0.0']) # 0.0.0.0 can be useful for some local setups
 
-# Add the Render external hostname if it exists (it will in production)
-# This handles the default Render domain like backend-medicheck.onrender.com
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    # Ensure it's not added twice if DEBUG includes it
-    if RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
-        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
-# Optional: Add any custom domains via an environment variable on Render
-# Set an environment variable `CUSTOM_DOMAINS` on Render, e.g., "www.yourdomain.com,api.yourdomain.com"
-CUSTOM_DOMAINS_STR = os.environ.get('CUSTOM_DOMAINS')
-if CUSTOM_DOMAINS_STR:
-    custom_domains = [d.strip() for d in CUSTOM_DOMAINS_STR.split(',')]
-    # Add custom domains, ensuring no duplicates
-    ALLOWED_HOSTS.extend([d for d in custom_domains if d not in ALLOWED_HOSTS])
-
-
-# ... rest of your settings ...
 # Application definition
 
 INSTALLED_APPS = [

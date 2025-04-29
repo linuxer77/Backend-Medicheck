@@ -1,7 +1,15 @@
 from google import genai
 import json
 
-history = ""
+
+#  
+#             '''The output should be in pure text form containing possible illness names. IMPORTANT: Respond *only* with the valid raw text, and absolutely no other text before or after it. For example: responding only with text  "Gastroenteritis, Influenza, Food poisoning" for a certain condition.
+#             For each, each disease:
+#             1 Common name (avoid jargon)
+#             2. Estimated likelihood as a percentage (must sum to 100 %)
+#             3. One-sentence “why it might fit”
+# history = ""
+
 class QueryResponse:
     def __init__(self):        
         self.client = genai.Client(api_key="AIzaSyAALehML5GdQAU6ed-ADJ82qOGBidt1wT4")
@@ -9,10 +17,11 @@ class QueryResponse:
     def generateResponse(self, diet):
         response = self.client.models.generate_content(
             model="gemini-2.0-flash",
-            contents=f'''Generate a personalized 7-day diet plan based on the following user data.
-            User Data: [{diet}]
+            contents=f'''
+            Analyze the symptoms mentioned below, generate a html table suggesting potential conditions based *only* on them.
+            Symptons: [{diet}].
 
-                The table should have the following columns in this exact order: Day, Breakfast, Lunch, Dinner, Snacks.
+                The table should have the following columns in this exact order: Disease, possibility.
 
                 Structure the response as a complete HTML `<table>` element, including `<thead>` for headers and `<tbody>` for the rows.
 
@@ -24,29 +33,20 @@ class QueryResponse:
                 <table>
                 <thead>
                     <tr>
-                    <th>Day</th>
-                    <th>Breakfast</th>
-                    <th>Lunch</th>
-                    <th>Dinner</th>
-                    <th>Snacks</th>
+                    <th>Disease</th>
+                    <th>Possibility</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Monday</td>
-                    <td>[Monday Breakfast content]</td>
-                    <td>[Monday Lunch content]</td>
-                    <td>[Monday Dinner content]</td>
-                    <td>[Monday Snacks content]</td>
+                    <td>[Disease Name]</td>
+                    <td>[Possibility in percentage]</td>
                     </tr>
                     <tr>
-                    <td>Tuesday</td>
-                    <td>[Tuesday Breakfast content]</td>
-                    <td>[Tuesday Lunch content]</td>
-                    <td>[Tuesday Dinner content]</td>
-                    <td>[Tuesday Snacks content]</td>
+                    <td>[Disease Name]</td>
+                    <td>[Possibility in percentage]</td>
                     </tr>
-                    <!-- ... and so on for other days -->
+                    <!-- ... and so on for other diseases -->
                 </tbody>
                 </table>
                 '''

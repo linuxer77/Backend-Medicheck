@@ -19,19 +19,43 @@ class PossibleDisease:
                 data=self.img_bytes,
                 mime_type='image/jpeg',
                 ),
-                '''Analyze the provided chest X-ray image. Based SOLELY on the visual patterns you detect, list potential corresponding diseases or significant abnormalities.
-                **Output Instructions:**
-                - List potential conditions ONLY.
-                - Separate each potential condition with a comma OR with spaces each.
-                - Do NOT include any introductory text, greeting, explanation, confidence score, disclaimer (like "I am not a medical professional" or "This is not a diagnosis"), or concluding remarks.
-                - If no significant abnormalities are detected based on visual patterns, output only the phrase: "No significant abnormalities detected based on visual patterns"
-                For example: responding only with text  "Gastroenteritis, Influenza, Food poisoning" for a certain condition.
-                For each, each disease:
-                1 Common name (avoid jargon)
-                2. Estimated likelihood as a percentage (must sum to 100 %)
-                3. One-sentence “why it might fit”
-                **Your output must contain *only* the list of potential conditions or the single phrase indicating no abnormalities found.
-                **'''
+                '''Analyze the provided chest X-ray image. Based SOLELY on the visual patterns you detect, create a html table stating potential corresponding diseases or significant abnormalities.
+
+                The table should have the following columns in this exact order: Disease, possibility.
+
+                Structure the response as a complete HTML `<table>` element, including `<thead>` for headers and `<tbody>` for the rows.
+
+                Output ONLY the HTML `<table>` element and its full content. Do not include any surrounding text, markdown code blocks (like ```html), or any other characters before or after the HTML table code.
+
+                Example structure of the HTML you should generate (use the actual meal plan data for the content):
+
+                ```html
+                <table>
+                <thead>
+                    <tr>
+                    <th>Disease</th>
+                    <th>Possibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>[Disease Name]</td>
+                    <td>[Possibility in percentage]</td>
+                    </tr>
+                    <tr>
+                    <td>[Disease Name]</td>
+                    <td>[Possibility in percentage]</td>
+                    </tr>
+                    <!-- ... and so on for other diseases -->
+                </tbody>
+                </table>
+                '''
+                '''Output Requirements:
+                IMPORTANT: 
+                NEVER use markdown formatting, code blocks (` ``` `), or escape sequences like `\n`.
+                Provide the requested information directly without conversational filler..
+                If no disease is found just respond with "No abnormalities detected."
+                Begin the output now:'''
                 ]
         )
 

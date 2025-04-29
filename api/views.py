@@ -42,11 +42,9 @@ def ImgViewSet(request):
         serializer.save()
         poss = image_handler.PossibleDisease()
         diseases = poss.getDisease(img_loc)
-        resDict = {'response': f'{diseases}'}
-        print(resDict)
-        return Response(resDict, status=201)
+        return HttpResponse(diseases, status=201)
     else:
-        return Response(serializer.errors, status=400)
+        return HttpResponse(serializer.errors, status=400)
 
 # @api_view(['POST'])
 # def AudioViewSet(request):
@@ -69,7 +67,9 @@ def VideoViewSet(request):
         serializer.save()
         res = video_handler.VideoHandler()
         possibleDisease = res.Response(video_loc)
-        return Response(possibleDisease, status=201)
+        prettifiedStr = prettify.Prettify()
+        prettyString = prettifiedStr.prettify_llm_json_string(possibleDisease)
+        return HttpResponse(prettyString, status=201)
 
 
 @api_view(['POST'])
@@ -154,5 +154,6 @@ def VerifyTxn(request):
     trxn_data = v.trxn_verify(trxn_hash)
     trxn_data = dict(trxn_data)
     resDict = {'response': f'{trxn_data}'}
+    print(resDict)
     print(JsonResponse(resDict, status=201))
     return JsonResponse(resDict, status=201)
