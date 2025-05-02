@@ -12,7 +12,7 @@ import json
 
 class QueryResponse:
     def __init__(self):        
-        self.client = genai.Client(api_key="AIzaSyAALehML5GdQAU6ed-ADJ82qOGBidt1wT4")
+        self.client = genai.Client(api_key="")
     
     def generateResponse(self, diet):
         response = self.client.models.generate_content(

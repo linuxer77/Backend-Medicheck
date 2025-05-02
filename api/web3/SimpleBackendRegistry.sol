@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^0.8.20; 
 
 contract SimpleBackendRegistry {
@@ -17,7 +17,7 @@ contract SimpleBackendRegistry {
 
         backendReports[msg.sender][_userIdHash] = _ipfsHash;
 
-        // Emit the event to log this storage action.
+
         emit ReportHashStored(msg.sender, _userIdHash, _ipfsHash, block.timestamp);
     }
 }

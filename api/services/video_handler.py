@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 
 class VideoHandler():
-    client = genai.Client(api_key="AIzaSyAALehML5GdQAU6ed-ADJ82qOGBidt1wT4")
+    client = genai.Client(api_key="")
     current_dir = Path(__file__).resolve()
     parent_dir = current_dir.parents[2]
 

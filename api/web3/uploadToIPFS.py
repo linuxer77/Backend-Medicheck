@@ -12,8 +12,7 @@ class PinataUpload:
             with open(filepath, 'rb') as f:
                 response = requests.post(url, files={'file': f}, headers=headers)
 
-            response.raise_for_status() # Raise HTTPError for bad responses (4xx or 5xx)
-
+            response.raise_for_status() 
             return response.json()
 
         except requests.exceptions.HTTPError as e:

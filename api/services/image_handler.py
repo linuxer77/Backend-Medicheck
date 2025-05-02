@@ -7,7 +7,7 @@ class PossibleDisease:
     current_dir = Path(__file__).resolve()
     parent_dir = current_dir.parents[2]
 
-    client = genai.Client(api_key="AIzaSyAALehML5GdQAU6ed-ADJ82qOGBidt1wT4")
+    client = genai.Client(api_key="")
     def getDisease(self, imgName):
         with open(f'{self.parent_dir}/media/uploads/{imgName}', 'rb') as f:
             self.img_bytes = f.read()
